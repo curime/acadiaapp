@@ -3,7 +3,7 @@ var trailLength = 25;
 var counter = 0;
 
 function setup() {
-  createCanvas(width, height);
+  createCanvas(displayWidth,displayHeight);
   frameRate(30);
 
   for (var i=0; i<5;i++){
