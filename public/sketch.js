@@ -17,6 +17,11 @@ function setup() {
   slider1.style('emmisionRate', '80px');
 
 
+  slider2 = createSlider(0, 0.25,0,0.01);
+  slider2.position(75, 50);
+  slider2.style('Curvature', '80px');
+
+
   button = createButton('reset');
   button.position(10, 10);
   button.mousePressed(resetCanvas);
@@ -73,8 +78,8 @@ function draw() {
 
 function mouseDragged(){
   if (frameCount%3  ==0 ){
-  if (mouseX > 70 && mouseY>70){
-  myArray.push(new smileyFace(mouseX,mouseY, random(65,100)));
+  if (mouseX > 70 && mouseY>100){
+  myArray.push(new smileyFace(mouseX,mouseY, random(25,100)));
 }
 }
 }
@@ -85,6 +90,7 @@ function mouseDragged(){
 function resetCanvas(){
   background(255);
   myArray.splice(0,myArray.length);
+
 
 }
 
@@ -166,7 +172,10 @@ function smileyFace(x,y,diameter){
     canvasSize = window.innerWidth*window.innerHeight;
 
     this.dir.setMag(canvasSize/2000000);
+    this.dir.rotate(random(slider2.value(),slider2.value()));
     this.pos.add(this.dir);
+
+
 
   }
   // is isOffCanvas ----------------------------------------------------------
