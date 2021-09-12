@@ -144,8 +144,13 @@ function smileyFace(x,y,diameter){
 
   // move ---------------------------------------------
   this.move = function(){
+
+    var canvasSize = 0;
+    canvasSize = window.innerWidth*window.innerHeight;
+
+    this.dir.setMag(canvasSize/2000000);
     this.pos.add(this.dir);
-    
+
   }
   // is isOffCanvas ----------------------------------------------------------
   this.isOffCanvas = function(){
