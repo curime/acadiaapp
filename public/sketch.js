@@ -9,21 +9,26 @@ function setup() {
 
   // friends number
   slider = createSlider(1, 5, 2,1);
-  slider.position(10, 10);
+  slider.position(75, 10);
   slider.style('friends', '80px');
 
-  slider1 = createSlider(0, 100, 50,1);
-  slider1.position(10, 40);
-  slider1.style('borderOffset', '80px');
+  slider1 = createSlider(25, 500, 250,25);
+  slider1.position(220, 10);
+  slider1.style('emmisionRate', '80px');
+
 
   button = createButton('reset');
-  button.position(10, 70);
+  button.position(10, 10);
   button.mousePressed(resetCanvas);
 
 
-  button = createButton('snap');
-  button.position(10, 100);
-  button.mousePressed(snapPhoto);
+  button1 = createButton('snap');
+  button1.position(window.innerWidth/2, window.innerHeight-50);
+  button1.mousePressed(snapPhoto);
+
+  myArray.push(new smileyFace(window.innerWidth/2,window.innerHeight/2, random(65,100)));
+
+
 
 
 }
@@ -31,6 +36,19 @@ function setup() {
 function draw() {
   //background(125);
   background(255,moodInTheRoom*255,0,2.5);
+
+  if (frameCount%slider1.value()==0){
+
+    myArray.push(new smileyFace(window.innerWidth/2,window.innerHeight/2, random(65,100)));
+  }
+
+
+  if (frameCount<5){
+    textSize(16);
+    text("draw some friends, s(he) is lonely", window.innerWidth/2-75,window.innerHeight/2-50);
+
+  }
+
   var balance = 0;
   moodInTheRoom = 0
   for (var i =0 ; i< myArray.length;i++){
@@ -78,7 +96,6 @@ function snapPhoto(){
 
   }else{
     name = "campers need some love"
-
   }
   saveCanvas(name, 'png');
 }
@@ -154,7 +171,7 @@ function smileyFace(x,y,diameter){
   }
   // is isOffCanvas ----------------------------------------------------------
   this.isOffCanvas = function(){
-    var offset = slider1.value();
+    var offset = 25;
     var offCanv = (this.pos.x < 0+offset ||
            this.pos.x > window.innerWidth-offset ||
            this.pos.y < 0+offset ||
